@@ -41,7 +41,7 @@ export default function Projects(){
                 alt={p.title}
                 src={`https://api.microlink.io/?url=${encodeURIComponent(p.url)}&screenshot=true&meta=false&embed=screenshot`}
                 className="w-full h-40 object-cover bg-slate-100"
-                onError={(e)=>{ e.target.onerror=null; e.target.src='/src/assets/placeholder.png' }}
+                onError={(e)=>{ e.target.onerror=null; e.target.src='/placeholder.svg' }}
               />
             </a>
             <h3 className="mt-3 font-semibold">{p.title}</h3>
