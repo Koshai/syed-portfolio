@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --brand-blue: #0ea5e9;
+  --brand-green: #22c55e;
+}
+
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
