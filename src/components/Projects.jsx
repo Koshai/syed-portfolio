@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ExternalLink, Github, Play, Star } from 'lucide-react'
+import { ExternalLink, Github, Star } from 'lucide-react'
 
 const projects = [
   {
@@ -34,7 +34,7 @@ const projects = [
     id: 3,
     title: "TACMAN VR Sculpting",
     category: "VR/AR • Creative Tools",
-    desc: "Revolutionary VR sculpting experience with haptic feedback integration. Award-winning project combining Unity with custom hardware.",
+    desc: "Revolutionary VR sculpting experience with haptic feedback integration. Winner of Best Hardware Hack category.",
     tech: ["Unity", "C#", "Meta XR SDK", "Hardware Integration"],
     url: "https://devpost.com/software/tac-man",
     github: null,
@@ -122,24 +122,6 @@ export default function Projects(){
             )}
           </div>
 
-          {/* Project Preview */}
-          <div className="relative mb-4 rounded-lg overflow-hidden bg-gray-800/50 h-32 flex items-center justify-center group-hover:bg-gray-800/70 transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0" />
-            <div className="text-gray-400 text-sm font-medium">
-              {hoveredProject === project.id ? (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="flex items-center gap-2"
-                >
-                  <Play className="w-5 h-5" />
-                  <span>View Project</span>
-                </motion.div>
-              ) : (
-                'Project Preview'
-              )}
-            </div>
-          </div>
 
           {/* Content */}
           <div className="space-y-3">

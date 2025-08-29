@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Code, Lightbulb, Users, Trophy, Coffee, Zap } from 'lucide-react'
+import { Code, Coffee } from 'lucide-react'
 
 const skills = {
   'Frontend': {
@@ -36,32 +36,6 @@ const skills = {
   }
 }
 
-const highlights = [
-  {
-    icon: <Trophy className="w-6 h-6" />,
-    title: "Award-Winning Projects",
-    desc: "Recognition for innovative VR experiences and AI solutions",
-    color: "from-yellow-400 to-orange-500"
-  },
-  {
-    icon: <Users className="w-6 h-6" />,
-    title: "Enterprise Solutions",
-    desc: "Built scalable systems serving government and business clients",
-    color: "from-blue-400 to-purple-500"
-  },
-  {
-    icon: <Zap className="w-6 h-6" />,
-    title: "Full-Stack Expertise",
-    desc: "End-to-end development from concept to deployment",
-    color: "from-green-400 to-teal-500"
-  },
-  {
-    icon: <Lightbulb className="w-6 h-6" />,
-    title: "Innovation Focus",
-    desc: "Always exploring cutting-edge technologies and methodologies",
-    color: "from-purple-400 to-pink-500"
-  }
-]
 
 export default function About(){
   const ref = React.useRef(null)
@@ -110,7 +84,7 @@ export default function About(){
                 
                 <div className="space-y-4 text-gray-300 leading-relaxed">
                   <p>
-                    I'm a passionate full-stack developer who loves solving complex problems through elegant code. 
+                    I'm a full-stack developer who loves solving complex problems through elegant code. 
                     My journey spans from building <span className="text-purple-400 font-medium">AI-powered safety systems</span> to creating 
                     <span className="text-blue-400 font-medium"> immersive VR experiences</span>.
                   </p>
@@ -122,7 +96,7 @@ export default function About(){
                   </p>
                   
                   <p>
-                    When I'm not coding, you'll find me exploring the latest in AI/ML, contributing to open source, 
+                    When I'm not coding, you'll find me exploring the latest in AI/ML, contributing to open source, involving myself in hackathons,
                     or mentoring other developers. I'm always excited to take on new challenges and collaborate on innovative projects.
                   </p>
                 </div>
@@ -140,27 +114,6 @@ export default function About(){
               </div>
             </div>
 
-            {/* Highlights */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              {highlights.map((highlight, index) => (
-                <motion.div
-                  key={highlight.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="relative group"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-r ${highlight.color} opacity-0 group-hover:opacity-20 rounded-xl blur transition-opacity`} />
-                  <div className="relative bg-gray-900/30 border border-gray-800/50 rounded-xl p-4 hover:bg-gray-900/50 transition-all">
-                    <div className={`inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${highlight.color} mb-3`}>
-                      <div className="text-white">{highlight.icon}</div>
-                    </div>
-                    <h4 className="font-semibold text-white mb-2">{highlight.title}</h4>
-                    <p className="text-sm text-gray-400">{highlight.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           {/* Skills */}

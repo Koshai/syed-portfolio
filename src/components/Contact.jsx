@@ -27,14 +27,14 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     icon: <Linkedin className="w-5 h-5" />,
-    href: 'https://linkedin.com/in/syed-akbar',
+    href: 'https://www.linkedin.com/in/koshai/',
     color: 'from-blue-600 to-blue-800',
     description: 'Connect professionally'
   },
   {
-    name: 'Twitter',
+    name: 'X',
     icon: <Twitter className="w-5 h-5" />,
-    href: 'https://twitter.com/syedakbar',
+    href: 'https://x.com/neloyakakoshai',
     color: 'from-sky-400 to-blue-500',
     description: 'Follow for updates'
   }

@@ -70,11 +70,12 @@ export default function Hero(){
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          Full-stack developer specializing in{' '}
-          <span className="text-purple-400 font-medium">React</span>,{' '}
-          <span className="text-blue-400 font-medium">Node.js</span>, and{' '}
-          <span className="text-green-400 font-medium">modern web technologies</span>.
-          I create performant, accessible, and visually stunning applications that solve real-world problems.
+          Expert in{' '}
+          <span className="text-purple-400 font-medium">React</span> and{' '}
+          <span className="text-blue-400 font-medium">Blazor .NET ecosystem</span> on the web,{' '}
+          <span className="text-green-400 font-medium">Unity developer</span> specializing in{' '}
+          <span className="text-orange-400 font-medium">VR and AR experiences</span>.
+          I create immersive applications that push the boundaries of digital interaction.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -111,11 +112,11 @@ export default function Hero(){
           <div className="flex flex-wrap justify-center gap-6">
             {[
               { name: 'React', color: 'text-blue-400' },
-              { name: 'TypeScript', color: 'text-blue-500' },
-              { name: 'Node.js', color: 'text-green-500' },
-              { name: 'Python', color: 'text-yellow-400' },
-              { name: 'TensorFlow', color: 'text-orange-400' },
-              { name: 'Unity', color: 'text-gray-300' }
+              { name: 'Blazor', color: 'text-purple-500' },
+              { name: 'Unity', color: 'text-gray-300' },
+              { name: 'C#/.NET', color: 'text-green-500' },
+              { name: 'VR/AR', color: 'text-orange-400' },
+              { name: 'TypeScript', color: 'text-blue-500' }
             ].map((tech, index) => (
               <motion.span
                 key={tech.name}
