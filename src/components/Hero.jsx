@@ -1,147 +1,188 @@
 
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { ArrowDown, Sparkles } from 'lucide-react'
 
-export default function Hero(){
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  
+const ROLES = [
+  'digital experiences',
+  'open-source frameworks',
+  'AI-powered products',
+  'immersive VR worlds',
+]
+
+function Typewriter({ words }) {
+  const [index, setIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [deleting, setDeleting] = useState(false)
+
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', updateMousePosition)
-    return () => window.removeEventListener('mousemove', updateMousePosition)
+    const word = words[index]
+    const timeout = setTimeout(() => {
+      if (!deleting) {
+        setText(word.slice(0, text.length + 1))
+        if (text.length + 1 === word.length) {
+          setTimeout(() => setDeleting(true), 2000)
+        }
+      } else {
+        setText(word.slice(0, text.length - 1))
+        if (text.length === 0) {
+          setDeleting(false)
+          setIndex((i) => (i + 1) % words.length)
+        }
+      }
+    }, deleting ? 40 : 80)
+
+    return () => clearTimeout(timeout)
+  }, [text, deleting, index, words])
+
+  return (
+    <span className="text-shimmer font-display font-bold">
+      {text}
+      <span className="animate-pulse text-violet-400">|</span>
+    </span>
+  )
+}
+
+export default function Hero() {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const onMove = (e) => setMouse({ x: e.clientX, y: e.clientY })
+    window.addEventListener('mousemove', onMove)
+    return () => window.removeEventListener('mousemove', onMove)
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Interactive cursor effect */}
-      <div 
-        className="fixed w-6 h-6 bg-purple-500/20 rounded-full blur-xl pointer-events-none z-50 mix-blend-screen"
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+      {/* Cursor glow */}
+      <div
+        className="fixed w-80 h-80 rounded-full pointer-events-none z-0 mix-blend-screen"
         style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-          transition: 'all 0.1s ease-out'
+          left: mouse.x - 160,
+          top: mouse.y - 160,
+          background: 'radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%)',
+          transition: 'left 0.15s ease-out, top 0.15s ease-out',
         }}
       />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        {/* Status Badge */}
-        <motion.div 
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
+        {/* Badge */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-emerald-400 text-sm font-medium mb-10"
         >
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+          </span>
+          <Sparkles className="w-4 h-4" />
           Available for new opportunities
         </motion.div>
 
-        {/* Main Heading */}
-        <motion.h1 
+        {/* Heading */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-violet-300/80 text-lg lg:text-xl font-medium mb-4 tracking-wide"
+        >
+          Hi, I'm
+        </motion.p>
+
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
+          className="font-display text-6xl sm:text-7xl lg:text-8xl font-extrabold mb-8 leading-[1.05] tracking-tight"
         >
-          <span className="block text-gray-400 text-2xl lg:text-3xl font-normal mb-2">Hi, I'm</span>
-          <span className="bg-gradient-to-r from-white via-gray-100 to-gray-400 bg-clip-text text-transparent">
-            Syed Akbar
-          </span>
+          <span className="text-shimmer">Syed Akbar</span>
         </motion.h1>
 
-        {/* Subtitle with Typewriter Effect */}
-        <motion.div 
+        {/* Typewriter */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-2xl lg:text-4xl font-medium mb-6"
+          className="text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 min-h-[3rem]"
         >
-          <span className="text-gray-300">I build </span>
-          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
-            digital experiences
-          </span>
+          <span className="text-slate-400">I build </span>
+          <Typewriter words={ROLES} />
         </motion.div>
 
         {/* Description */}
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed"
+          className="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Full-stack developer specializing in{' '}
-          <span className="text-purple-400 font-medium">React</span>,{' '}
-          <span className="text-blue-400 font-medium">Node.js</span>, and{' '}
-          <span className="text-green-400 font-medium">modern web technologies</span>.
-          I create performant, accessible, and visually stunning applications that solve real-world problems.
+          Full-stack developer & creator of{' '}
+          <a
+            href="https://www.buzzblazor.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-400 hover:text-violet-300 font-semibold underline decoration-violet-500/40 underline-offset-4 transition-colors"
+          >
+            BuzzBlazor
+          </a>
+          . React, Blazor, AI/ML, and modern web — shipped with craft.
         </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div 
+        {/* CTAs */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a 
-            href="#projects" 
-            className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 active:scale-95"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity" />
-            <span className="relative">View My Work</span>
+          <a href="#projects" className="btn-glow relative px-8 py-4 rounded-2xl font-semibold text-white">
+            <span className="relative z-10">View My Work</span>
           </a>
-          
-          <a 
-            href="#contact" 
-            className="px-8 py-4 border border-gray-700 hover:border-gray-600 rounded-xl font-semibold transition-all duration-300 hover:bg-gray-800/50 hover:scale-105 active:scale-95"
+          <a
+            href="#contact"
+            className="px-8 py-4 rounded-2xl font-semibold glass-card text-slate-200 hover:text-white hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-0.5"
           >
             Get In Touch
           </a>
         </motion.div>
 
-        {/* Tech Stack Icons */}
-        <motion.div 
+        {/* Tech pills */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="mt-16"
+          className="mt-20"
         >
-          <p className="text-gray-500 text-sm mb-6">Technologies I work with</p>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              { name: 'React', color: 'text-blue-400' },
-              { name: 'TypeScript', color: 'text-blue-500' },
-              { name: 'Node.js', color: 'text-green-500' },
-              { name: 'Python', color: 'text-yellow-400' },
-              { name: 'TensorFlow', color: 'text-orange-400' },
-              { name: 'Unity', color: 'text-gray-300' }
-            ].map((tech, index) => (
+          <p className="text-slate-500 text-xs uppercase tracking-widest mb-6">Stack</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {['React', 'Blazor', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Unity'].map((tech, i) => (
               <motion.span
-                key={tech.name}
+                key={tech}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-                className={`px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700 ${tech.color} font-medium text-sm hover:scale-110 transition-transform cursor-default`}
+                transition={{ duration: 0.4, delay: 1.1 + i * 0.06 }}
+                className="px-4 py-2 rounded-xl glass-card text-sm text-slate-300 hover:text-white hover:-translate-y-0.5 transition-all duration-200 cursor-default"
               >
-                {tech.name}
+                {tech}
               </motion.span>
             ))}
           </div>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div 
+        {/* Scroll hint */}
+        <motion.a
+          href="#projects"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-violet-400 transition-colors"
+          aria-label="Scroll to projects"
         >
-          <div className="flex flex-col items-center gap-2 text-gray-500">
-            <span className="text-sm">Scroll to explore</span>
-            <div className="w-0.5 h-8 bg-gradient-to-b from-gray-500 to-transparent animate-pulse" />
-          </div>
-        </motion.div>
+          <span className="text-xs tracking-widest uppercase">Explore</span>
+          <ArrowDown className="w-5 h-5 animate-bounce" />
+        </motion.a>
       </div>
     </section>
   )
