@@ -58,7 +58,7 @@ const highlights = [
   {
     icon: <Lightbulb className="w-5 h-5" />,
     title: 'Innovation Focus',
-    desc: 'AI, VR, and cutting-edge web technologies',
+    desc: 'AI, VR, hackathons, and cutting-edge web technologies',
     color: 'from-violet-400 to-fuchsia-500',
   },
 ]
@@ -86,7 +86,6 @@ export default function About() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Story */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -125,6 +124,10 @@ export default function About() {
                 <p>
                   Enterprise apps, ML models, open-source libraries — I write code that's maintainable, accessible, and fast.
                 </p>
+                <p>
+                  When I'm not coding, you'll find me exploring the latest in AI/ML, contributing to open source, involving myself in hackathons,
+                  or mentoring other developers. I'm always excited to take on new challenges and collaborate on innovative projects.
+                </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-white/5 text-sm text-slate-500">
@@ -154,7 +157,6 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Skills */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -195,7 +197,6 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

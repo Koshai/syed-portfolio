@@ -10,6 +10,15 @@ const ROLES = [
   'immersive VR worlds',
 ]
 
+const TECH_STACK = [
+  { name: 'React', color: 'text-blue-400' },
+  { name: 'Blazor', color: 'text-violet-400' },
+  { name: 'Unity', color: 'text-slate-300' },
+  { name: 'C#/.NET', color: 'text-emerald-400' },
+  { name: 'VR/AR', color: 'text-orange-400' },
+  { name: 'TypeScript', color: 'text-cyan-400' },
+]
+
 function Typewriter({ words }) {
   const [index, setIndex] = useState(0)
   const [text, setText] = useState('')
@@ -54,7 +63,6 @@ export default function Hero() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Cursor glow */}
       <div
         className="fixed w-80 h-80 rounded-full pointer-events-none z-0 mix-blend-screen"
         style={{
@@ -66,7 +74,6 @@ export default function Hero() {
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
-        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,7 +88,6 @@ export default function Hero() {
           Available for new opportunities
         </motion.div>
 
-        {/* Heading */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,7 +106,6 @@ export default function Hero() {
           <span className="text-shimmer">Syed Akbar</span>
         </motion.h1>
 
-        {/* Typewriter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,12 +116,11 @@ export default function Hero() {
           <Typewriter words={ROLES} />
         </motion.div>
 
-        {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-lg lg:text-xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed"
         >
           Full-stack developer & creator of{' '}
           <a
@@ -127,10 +131,13 @@ export default function Hero() {
           >
             BuzzBlazor
           </a>
-          . React, Blazor, AI/ML, and modern web — shipped with craft.
+          . Expert in{' '}
+          <span className="text-violet-400 font-medium">React</span> and the{' '}
+          <span className="text-cyan-400 font-medium">Blazor .NET ecosystem</span>, plus{' '}
+          <span className="text-emerald-400 font-medium">Unity</span> for{' '}
+          <span className="text-orange-400 font-medium">VR and AR experiences</span>.
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +155,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Tech pills */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -157,21 +163,20 @@ export default function Hero() {
         >
           <p className="text-slate-500 text-xs uppercase tracking-widest mb-6">Stack</p>
           <div className="flex flex-wrap justify-center gap-3">
-            {['React', 'Blazor', 'TypeScript', 'Node.js', 'Python', 'TensorFlow', 'Unity'].map((tech, i) => (
+            {TECH_STACK.map((tech, i) => (
               <motion.span
-                key={tech}
+                key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 1.1 + i * 0.06 }}
-                className="px-4 py-2 rounded-xl glass-card text-sm text-slate-300 hover:text-white hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+                className={`px-4 py-2 rounded-xl glass-card text-sm ${tech.color} hover:text-white hover:-translate-y-0.5 transition-all duration-200 cursor-default`}
               >
-                {tech}
+                {tech.name}
               </motion.span>
             ))}
           </div>
         </motion.div>
 
-        {/* Scroll hint */}
         <motion.a
           href="#projects"
           initial={{ opacity: 0 }}

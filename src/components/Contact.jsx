@@ -26,16 +26,16 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     icon: <Linkedin className="w-5 h-5" />,
-    href: 'https://linkedin.com/in/syed-akbar',
+    href: 'https://www.linkedin.com/in/koshai/',
     color: 'from-blue-600 to-blue-800',
     description: 'Connect professionally',
   },
   {
-    name: 'Twitter',
+    name: 'X',
     icon: <Twitter className="w-5 h-5" />,
-    href: 'https://twitter.com/syedakbar',
+    href: 'https://x.com/neloyakakoshai',
     color: 'from-sky-400 to-blue-500',
-    description: '@syedakbar',
+    description: '@neloyakakoshai',
   },
 ]
 
@@ -90,7 +90,6 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -201,7 +200,6 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}

@@ -34,6 +34,20 @@ const projects = [
   },
   {
     id: 3,
+    title: 'TACMAN VR Sculpting',
+    category: 'VR/AR • Creative Tools',
+    desc: 'VR sculpting experience with haptic feedback integration. Winner of Best Hardware Hack category.',
+    tech: ['Unity', 'C#', 'Meta XR SDK', 'Hardware Integration'],
+    url: 'https://devpost.com/software/tac-man',
+    github: null,
+    featured: false,
+    color: 'from-purple-500/20 to-pink-500/20',
+    borderColor: 'border-purple-500/30',
+    status: 'Award Winner',
+    filterTag: 'VR/AR',
+  },
+  {
+    id: 4,
     title: 'Gunshot Detection Software',
     category: 'AI/ML • Security',
     desc: 'TensorFlow audio model with real-time processing for school safety. Achieved 95% accuracy in controlled environments.',
@@ -45,20 +59,6 @@ const projects = [
     borderColor: 'border-red-500/30',
     status: 'Open Source',
     filterTag: 'AI/ML',
-  },
-  {
-    id: 4,
-    title: 'TACMAN VR Sculpting',
-    category: 'VR/AR • Creative Tools',
-    desc: 'VR sculpting experience with haptic feedback integration. Award-winning project combining Unity with custom hardware.',
-    tech: ['Unity', 'C#', 'Meta XR SDK', 'Hardware Integration'],
-    url: 'https://devpost.com/software/tac-man',
-    github: null,
-    featured: false,
-    color: 'from-purple-500/20 to-pink-500/20',
-    borderColor: 'border-purple-500/30',
-    status: 'Award Winner',
-    filterTag: 'VR/AR',
   },
   {
     id: 5,
@@ -144,7 +144,6 @@ function ProjectCard({ project, index }) {
     >
       <div className={`absolute -inset-px rounded-2xl bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500`} />
       <div className="relative h-full glass-card rounded-2xl p-5 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-        {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${project.color} border ${project.borderColor} text-slate-200`}>
             {project.status}
